@@ -54,7 +54,7 @@ h1, h2, h3{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 95%;
     margin: 0;
     color: black;
     padding: 0, 20px;
@@ -465,9 +465,34 @@ blockquote p {
     border-radius: 8px;
     overflow: hidden;
 }
-
-
-
+.map-container {
+    position: relative;
+}
+.custom-map-control-button {
+position: absolute;
+top: 10px;
+left: 10px;
+background-color: rgb(255, 255, 255);
+border: 1px solid #ffffff;
+border-radius: 5px;
+padding: 10px 20px;
+font-size: 16px;
+cursor: pointer;
+z-index: 999;
+outline: none; /* Remove a borda preta do foco */
+}
+/* Remover a borda ao receber foco */
+.custom-map-control-button:focus {
+outline: none;
+border: 1px solid transparent; /* Garantir que não haja borda visível */
+}
+.custom-map-control-button:hover {
+color: blue; /* Mudando a cor do texto para azul no hover */
+}
+/* Estilo para adicionar espaçamento entre a section e o footer */
+section {
+margin-bottom: 50px; /* Distância entre a seção e o rodapé */
+}
 
 /*****    ***************      *****/
 /*****    barra de agencia     *****/

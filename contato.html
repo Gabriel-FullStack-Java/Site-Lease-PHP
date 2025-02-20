@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sitelease - Agência</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <link rel="stylesheet" href="./home.css" />
+  </head>
+
+  <body>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <a
+              class="navbar-brand"
+              href="#"
+              style="display: flex; align-items: center; gap: 10px"
+            >
+              <img
+                src="./IMG/Logo.webp"
+                alt="Logo"
+                style="height: 40px; width: auto; margin-right: 10px"
+              />
+              <span style="font-size: 1.25rem; font-weight: bold; color: #fff"
+                >Sitelease</span
+              >
+            </a>
+      
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="#home">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#about">Sobre Nós</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#services">Serviços</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#portfolio">Portfólio</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#testimonials">Testemunhos</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#contact">Contato</a>
+                </li>
+              </ul>
+            </div>
+        </nav>
+         <!-- *************  -->
+    <!-- Contact Section -->
+    <!-- ************** -->
+    <section id="contact" class="contact-section py-5">
+        <h2 class="text-center mb-4">Entre em Contato</h2>
+        <p class="text-center mb-4">
+          Estamos prontos para ajudar! Preencha o formulário abaixo ou entre em
+          contato diretamente pelos nossos canais.
+        </p>
+        <div class="row mb-5">
+          <div class="col-md-6 mx-auto mt-5">
+            <form action="PHP/recebe-dados.php" method="post">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="name">Nome</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="nome-do-usuario"
+                    placeholder="Seu nome"
+                    required
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="email">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    name="email-do-usuario"
+                    placeholder="Seu email"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-group form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  name="promocao"
+                  id="promocao"
+                  value="sim"
+                />
+                <label class="form-check-label" for="promocao"
+                  >Aceito receber informações sobre promoções</label
+                >
+              </div>
+              <button name="enviar" class="btn btn-primary btn-block">
+                Enviar
+              </button>
+            </form>
+          </div>
+          <div class="col-md-6">
+            <h4>Informações de Contato</h4>
+            <p><strong>Email:</strong> contato@sitelease.com.br</p>
+            <p><strong>Telefone:</strong> (48) 9 91821109</p>
+            <p>
+              <strong>Endereço:</strong> Rua Maria Cecilia Sodre, 309 - Pria João
+              Roza, Biguaçu - SC
+            </p>
+            <h4>Siga-nos</h4>
+            <div class="social-icons">
+              <a href="#" class="mr-3"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="mr-3"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="mr-3"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-12">
+            <h4 class="text-center">Nossa Localização</h4>
+            <div class="map-container" style="position: relative">
+              <!-- O iframe exibe o mapa -->
+                <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3155697.3075514656!2d-48.87733028373342!3d-27.595538929503157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9527390b97d52c61%3A0xb4e5d135f5174a8c!2sFlorian%C3%B3polis%2C%20SC!5e0!3m2!1spt-BR!2sbr!4v1632924058581!5m2!1spt-BR!2sbr"
+                width="100%"
+                height="250"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy">
+                </iframe>
+  
+              <!-- Botão Ver no Google Maps sobrepondo o mapa -->
+              <button onclick="window.open('https://maps.app.goo.gl/YwD5pyDi7aZJsJiD6', '_blank')" class="custom-map-control-button">    
+                Ver no Google Maps
+               </button>
+            </div>
+        </div>
+        </div>
+  
+        <style>
+          
+        </style>
+    </section>
+    <footer
+      class="bg-dark text-white"style="height: 40px; display: flex; justify-content: center; align-items: center;">
+        <p>
+            &copy; 2024 Setelease Agência Digital. Todos os direitos reservados.
+        </p>
+    </footer>
+
+    <!-- Widget WhatsApp -->
+    <script
+      src="https://static.elfsight.com/platform/platform.js"
+      async
+    ></script>
+    <div
+      class="elfsight-app-f8e6ed6e-26e3-483f-80f8-39c10ff2468d"
+      data-elfsight-app-lazy
+    ></div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
