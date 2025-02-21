@@ -1,4 +1,11 @@
 <?php
+require '../INCLUDES/geraCodigo.inc.php';
+
+$codigoGerado = geraCodigoAutenticacao();
+
+$_SESSION['codigo_autenticacao'] = $codigoGerado;
+
+$interesseDoCliente = $_SESSION['opcao_selecionada'];
 
 // Incluir os arquivos do PHPMailer
 require '../PHPMailer/src/PHPMailer.php';
@@ -22,14 +29,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Verificar se o e-mail é válido
     if (filter_var($emailDestinatario, FILTER_VALIDATE_EMAIL)) {
 
-        //$mensagem = htmlspecialchars($_POST['mensagem']); // Sanitiza a mensagem caso viesse do formulário
         // Definir a mensagem do e-mail
         $mensagem = 'Olá, ' . $nomeUsuario . ',<br><br>';
-        $mensagem .= 'Obrigado por entrar em contato com a SiteLease. ';
-        $mensagem .= 'Recebemos sua mensagem e nossa equipe está analisando o seu pedido. ';
-        $mensagem .= 'Em breve, entraremos em contato para fornecer mais informações.<br><br>';
+        $mensagem .= 'Seja bem-vindo à SiteLease!<br><br>';
+        $mensagem .= 'Agradecemos pela confiança em nossos serviços. Você escolheu o serviço: <strong>' . $interesseDoCliente . '</strong>.<br><br>';
+        $mensagem .= 'Aqui está o seu código de acesso: <strong>' . $codigoGerado . '</strong>.<br><br>';
+        $mensagem .= 'Esse código será necessário para você acessar a área do cliente em nosso site e acompanhar o status do seu pedido.<br><br>';
+        $mensagem .= 'Caso tenha alguma dúvida ou precise de mais informações, não hesite em nos contactar.<br><br>';
         $mensagem .= 'Atenciosamente,<br>Equipe SiteLease';
-
         // Criar instância do PHPMailer
         $mail = new PHPMailer(true);
 
@@ -55,11 +62,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Envia o e-mail
             $mail->send();
-            echo 'Mensagem enviada com sucesso!';
         } catch (Exception $e) {
             echo "Erro ao enviar e-mail: {$mail->ErrorInfo}";
         }
-
     } else {
         echo 'O endereço de e-mail fornecido não é válido.';
     }

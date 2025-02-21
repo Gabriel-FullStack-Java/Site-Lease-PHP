@@ -626,14 +626,17 @@ footer {
 }
 .emailOuCelular{
     display: flex;
-    justify-content:space-around;
-    align-items: center;    
+    justify-content:space-evenly;
+    border: 2px solid black;
 }
-#celularCheck, #emailCheck{
+#cellAdd{
     display: none;
 }
 .form-row{
     height: 200px;
+}
+#contact{
+    margin-top: 20px;
 }
 
 /*
