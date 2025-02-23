@@ -1,19 +1,16 @@
 const celularCheckbox = document.getElementById("celular");
-const emailCheckbox = document.getElementById("email");
+const celularInput = document.getElementById("cellAdd");
 
 celularCheckbox.addEventListener("change", function () {
   if (celularCheckbox.checked) {
-    document.querySelector("#cellAdd").style.display = "block";
+    celularInput.style.display = "block";  // Exibe o campo de celular
   } else {
-    // Esconde o campo #cellAdd e limpa o valor
-    document.querySelector("#cellAdd").style.display = "none";
-    document.querySelector("#cellAdd").value = "";
+    celularInput.style.display = "none";  // Oculta o campo de celular
+    celularInput.value = "";  // Limpa o valor
   }
 });
 
 $("#opcao").change(function () {
   var valor = $(this).val();
   alert("O valor selecionado é: " + valor);
-})
-
-
+});

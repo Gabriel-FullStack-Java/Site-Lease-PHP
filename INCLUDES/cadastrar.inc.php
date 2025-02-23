@@ -6,9 +6,9 @@ $nome     = $conexao->escape_string(trim($_POST["nome-do-usuario"]));
 $email    = $conexao->escape_string(trim($_POST["email-do-usuario"]));
 $celular  = $conexao->escape_string(trim($_POST["celular-do-usuario"]));
 
-if( empty($celular)) {
+if(empty($celular)) {
 
-  $sql = "INSERT $NomeDaTabela1 VALUES
+  $sql = "INSERT IGNORE INTO $NomeDaTabela1 VALUES
   (
     null,
     '$nome',
@@ -23,7 +23,7 @@ if( empty($celular)) {
 
 }
 else {
-  $sql = "INSERT $NomeDaTabela1 VALUES
+  $sql = "INSERT IGNORE INTO $NomeDaTabela1 VALUES
   (
     null,
     '$nome',

@@ -638,6 +638,13 @@ footer {
 #contact{
     margin-top: 20px;
 }
+#bodyAdmin{
+    margin: 0 auto;
+}
+.tabelaClientes{
+    display: grid;
+    margin: 0 auto;
+}
 
 /*
 UMA EXPLICAÇÃO SOBRE ALGUNS ATRIBUTOS
