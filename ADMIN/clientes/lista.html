@@ -18,7 +18,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <title>Olá, mundo!</title>
+    <title>Lista de Clientes</title>
 </head>
 <body>
 
@@ -48,48 +48,50 @@
     </div>
 </nav>
 
-<!-- Estrutura de cadastro de cliente -->
-<div class="container-fluid" >
+<!-- Estrutura de lista de clientes -->
+<div class="container-fluid">
+    <!-- Mensagem de sucesso (opcional) -->
+    <?php if (isset($mensagem)): ?>
+        <div class="alert alert-success"><?= $mensagem ?></div>
+    <?php endif; ?>
+
     <table class="table" id="tabela">
         <thead>
-        <tr >
-            <td>ID</td>
-            <td>Nome</td>
-            <td>Telefone</td>
-            <td>Email</td>
-            <td>Cidade</td>
-            <td>Ação</td>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Telefone</th>
+            <th>Email</th>
+            <th>Serviço</th>
+            <th>Ação</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="cliente : ${listaClientes}">
-            <td th:text="${cliente.id}"></td>
-            <td th:text="${cliente.nome}"></td>
-            <td th:text="${cliente.cpf}"></td>
-            <td th:text="${cliente.telefone}"></td>
-            <td th:text="${cliente.endereco}"></td>
-            <td th:text="${cliente.numero}"></td>
-            <td th:text="${cliente.bairro}"></td>
-            <td th:text="${cliente.email}"></td>
-            <td th:text="${cliente.cidade.nome}"></td>
-            <td colspan="2">
-                <a th:href="@{/editarCliente/{id}(id=${cliente.id})}">
-                    <i class="fa-solid fa-pen-to-square" style="color: #0285e8;"></i>
-                </a>
-                <a th:href="@{/removerCliente/{id}(id=${cliente.id})}">
-                    <i class="fa-solid fa-trash" style="color: red;"></i>
-                </a>
-            </td>
-        </tr>
+        <?php foreach ($clientes as $cliente): ?>
+            <tr>
+                <td><?= $cliente->getId(); ?></td>
+                <td><?= $cliente->getNome(); ?></td>
+                <td><?= $cliente->getTelefone(); ?></td>
+                <td><?= $cliente->getEmail(); ?></td>
+                <td><?= $cliente->getServico(); ?></td>
+                <td>
+                    <a href="/editarCliente/<?= $cliente->getId(); ?>">
+                        <i class="fa-solid fa-pen-to-square edit-icon"></i>
+                    </a>
+                    <a href="/removerCliente/<?= $cliente->getId(); ?>" class="delete-link">
+                        <i class="fa-solid fa-trash delete-icon"></i>
+                    </a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
         </tbody>
     </table>
 
-    <a class="btn btn-danger" href="/administrativo"><i class="fa-solid fa-rotate-left"></i> Voltar</a>
-    <a class="btn btn-primary" href="/cadastroCliente"><i class="fa-solid fa-plus"></i> Cadastrar</a>
+    <a class="btn btn-danger" href="../home.html"><i class="fa-solid fa-rotate-left"></i> Voltar</a>
+    <a class="btn btn-primary" href="cadastro.html"><i class="fa-solid fa-plus"></i> Cadastrar</a>
 </div>
 
 <!-- JavaScript (Opcional) -->
-<!-- jQuery completo, Popper.js e Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha384-tsQFqpERiu+8ZLgfT6wr1V/ljwlgdZyZrsM1FNpvRlbB0F/U1FjdDlyO7xx2yY/2"
         crossorigin="anonymous"></script>
@@ -102,21 +104,25 @@
 
 <!-- DataTables JS via CDN jquery-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<!-- datatable jquery -->
 <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
-<!-- Inicializando DataTables Javascript-->
+
 <script>
+    // Inicializando DataTables
     $(document).ready(function () {
-        $('#tabela').DataTable();
+        $('#tabela').DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.11.3/i18n/pt_br.json',
+            },
+        });
     });
-//codigo para transformar as informações em portugues
-    var table = new DataTable('#tabela', {
-        language:{
-            url:'//cdn.datatables.net/plug-ins/1.11.3/i18n/pt_br.json',
-        },
+
+    // Confirmar antes de remover
+    $('a.delete-link').on('click', function (e) {
+        if (!confirm('Tem certeza que deseja excluir este cliente?')) {
+            e.preventDefault();
+        }
     });
 </script>
 
 </body>
 </html>
-

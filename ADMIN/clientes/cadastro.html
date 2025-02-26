@@ -49,50 +49,56 @@
 
 <!-- Cadastro de Cliente -->
 <div class="container mt-4">
-    <form th:action="@{/salvarCliente}" th:object="${cliente}" method="POST">
+    <form action="ClienteController.php" method="POST">
         <div class="form-group">
-
             <div class="row">
                 <div class="col-md">
                     <label for="id">Id:</label>
-                    <input type="text" readonly="true" class="form-control" id="id" th:field="*{id}">
+                    <input type="text" readonly="true" class="form-control" id="id">
                 </div>
             </div>
-
+    
             <div class="row">
                 <div class="col-md">
                     <label>Nome Cliente:</label>
-                    <input type="text" required class="form-control" th:field="*{nome}">
+                    <input type="text" name="nome" required class="form-control">
                 </div>
             </div>
-
+    
             <div class="row">
                 <div class="col-md">
                     <label>Telefone:</label>
-                    <input type="text" required class="form-control" id="telefone" th:field="*{telefone}">
+                    <input type="text" name="telefone" required class="form-control" id="telefone">
                 </div>
             </div>
-        
+    
             <div class="row">
                 <div class="col-md">
                     <label>Email:</label>
-                    <input type="text" required class="form-control" th:field="*{email}">
+                    <input type="email" name="email" required class="form-control">
                 </div>
             </div>
-
+    
             <div class="row">
                 <div class="col-md">
                     <label>Serviço:</label>
-                    <input type="text" required class="form-control" th:field="*{servico}">
+                    <select name="opcao" class="form-control" required>
+                        <option value="Desenvolvimento Web">Desenvolvimento Web</option>
+                        <option value="Marketing Digital">Marketing Digital</option>
+                        <option value="Consultoria de Design">Consultoria de Design</option>
+                        <option value="Desenvolvimento Mobile">Desenvolvimento Mobile</option>
+                        <option value="Otimização de Busca (SEO)">Otimização de Busca (SEO)</option>
+                        <option value="Gestão de Mídias Sociais">Gestão de Mídias Sociais</option>
+                    </select>
                 </div>
             </div>
-
-</div>
-
+        </div>
+    
         <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Salvar</button>
-        <a class="btn btn-danger" href="/administrativo"><i class="fa-solid fa-rotate-left"></i> Voltar</a>
-        <a class="btn btn-success" href="/listaClientes"><i class="fa-solid fa-list"></i> Listar</a>
+        <a class="btn btn-danger" href="../home.html"><i class="fa-solid fa-rotate-left"></i> Voltar</a>
+        <a class="btn btn-success" href="lista.html"><i class="fa-solid fa-list"></i> Listar</a>
     </form>
+    
 </div>
 
 <!-- JavaScript (Opcional) -->
