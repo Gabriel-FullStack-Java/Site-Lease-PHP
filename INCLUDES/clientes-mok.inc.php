@@ -1,8 +1,6 @@
 <?php
 
-if ($conexao->connect_error) {
-  die("Conexão falhou: " . $conexao->connect_error);
-}
+$conexao = Conexao::getConexao();
 
 // Array de clientes mockados
 $clientes = [
@@ -27,13 +25,22 @@ $clientes = [
   ["Leonardo Freitas", "leonardo.freitas@email.com", null, "T1U2V3"],
   ["Camila Barros", "camila.barros@email.com", "11944445555", "W4X5Y6"]
 ];
-// Preparando a query SQL
-$stmt = $conexao->prepare("INSERT IGNORE INTO dados_cliente (NOME, EMAIL, CELULAR, CODIGO) VALUES (?, ?, ?, ?)");
+
+$stmt = $conexao->prepare("INSERT IGNORE INTO " . Conexao::NOME_TABELA_CLIENTE ." (NOME, EMAIL, CELULAR, CODIGO) VALUES (?, ?, ?, ?)");
+
+if ($stmt === false) {
+  die("Erro ao preparar a consulta: " . $conexao->error);
+}
 
 foreach ($clientes as $cliente) {
-  $celular = $cliente[2] ?? null;
   $stmt->bind_param("ssss", $cliente[0], $cliente[1], $cliente[2], $cliente[3]);
-  $stmt->execute();
+
+  if (!$stmt->execute()) {
+    echo "Erro ao inserir cliente: " . $stmt->error . "<br>";
+  }
 }
-$stmt->close();
-$conexao->close();
+
+Conexao::fecharStatement($stmt);
+Conexao::fecharConexao();
+
+echo "Clientes mockados inseridos com sucesso!<br>";
